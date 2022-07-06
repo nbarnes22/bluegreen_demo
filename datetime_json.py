@@ -34,5 +34,6 @@ def date():
 
 
 if __name__ == '__main__':
-    # Run the app server on localhost:4449
-    app.run('localhost', 4449)
+    # Run the app server on localhost:5000
+    app.run(debug=False)
+    app.run('localhost', 5000)
