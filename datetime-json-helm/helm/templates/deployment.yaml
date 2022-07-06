@@ -1,55 +1,24 @@
-kind: Deployment
 apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: {{ .Values.name }}
+  creationTimestamp: null
   labels:
-    app: {{ .Values.name }}
+    app: mysite
+  name: mysite
 spec:
-  replicas: {{ .Values.replicas }}
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ .Values.name }}
+      app: myapp
+  strategy: {}
   template:
     metadata:
-      name: {{ .Values.name }}
+      creationTimestamp: null
       labels:
-        app: {{ .Values.name }}
-      annotations:
-        {{- if .Values.iamRoleArn }}
-        iam.amazonaws.com/role: {{ .Values.iamRoleArn }}
-        {{- end }}
-        {{- if .Values.bitbucketBuildNumber }}
-        bitbucketBuildNumber: "{{ .Values.bitbucketBuildNumber }}"
-        {{- end }}
+        app: myapp
     spec:
       containers:
-      - name: {{ .Values.name }}
-        image: {{ .Values.image }}:{{ .Values.imageTag }}
-        imagePullPolicy: Always
-        env:
-        - name: DEPLOYMENT_ENVIRONMENT
-          value: {{ .Values.deploymentEnvironment }}
-        # standard envelopment meta env vars
-        - name: META_PRODUCER
-          value: {{ .Values.name }}
-        - name: META_PRODUCER_VERSION
-          value: {{ .Values.imageTag }}
-        envFrom:
-        - configMapRef:
-            name: {{ .Values.name }}-configmap-env
-{{- if .Values.externalSecret }}
-        - secretRef:
-            name: {{ .Values.name }}-secret
-{{- end }}
-        resources:
-{{ toYaml .Values.resources | indent 10 }}
-{{- if .Values.healthProbes.enabled }}
-{{- if .Values.healthProbes.readinessProbe }}
-        readinessProbe:
-{{ toYaml .Values.healthProbes.readinessProbe | indent 10 }}
-{{- end }}
-{{- if .Values.healthProbes.livenessProbe }}
-        livenessProbe:
-{{ toYaml .Values.healthProbes.livenessProbe | indent 10 }}
-{{- end }}
-{{- end }}
+      - image: 152493160469.dkr.ecr.us-east-1.amazonaws.com/ecr-blizz-ue1:1.0.0
+        name: datetime-json
+        resources: {}
+status: {}

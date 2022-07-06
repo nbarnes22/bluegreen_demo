@@ -1,17 +1,18 @@
-{{- if .Values.service.enabled }}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.name }}
+  creationTimestamp: null
   labels:
-    app: {{ .Values.name }}
+    app: mysite
+    app.kubernetes.io/managed-by: Helm
+  name: mysite
 spec:
-  type: ClusterIP
   ports:
-    - port: {{ .Values.service.servicePort }}
-      targetPort: {{ .Values.service.servicePort }}
-      protocol: TCP
-      name: http
+  - port: 5000
+    protocol: TCP
+    targetPort: 5000
   selector:
-    app: {{ .Values.name }}
-{{- end }}
+    app: myapp
+  type: NodePort
+status:
+  loadBalancer: {}
