@@ -21,5 +21,10 @@ COPY requirements.txt /$APP_DIR
 RUN pip3 install --no-cache-dir -r requirements.txt
 # Copying src code to Container
 COPY datetime_json.py /$APP_DIR
+# Run server
+EXPOSE 5000
+ENV FLASK_APP=datetime_json.py
 # Running Python Application
-CMD ["python3", "datetime_json.py"]
+# CMD ["python3", "datetime_json.py"]
+ENTRYPOINT [ "flask"]
+CMD ["run", "--host", "0.0.0.0"]

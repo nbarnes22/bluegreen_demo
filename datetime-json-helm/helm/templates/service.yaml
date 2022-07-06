@@ -11,6 +11,7 @@ spec:
   - port: 5000
     protocol: TCP
     targetPort: 5000
+    nodePort: 32222
   selector:
     app: datetime-json
   type: NodePort
