@@ -13,7 +13,7 @@ spec:
     targetPort: 5000
     nodePort: 32222
   selector:
-    app: datetime-json
+    app: blizzard-demo
   type: NodePort
 status:
   loadBalancer: {}
