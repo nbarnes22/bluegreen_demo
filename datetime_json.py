@@ -15,7 +15,7 @@ app = Flask(__name__)
 def hello():
     # Render the page
     # Print Hello World!
-    return "Hello World!"
+    return "Hello World?"
 
 
 @app.route('/date')

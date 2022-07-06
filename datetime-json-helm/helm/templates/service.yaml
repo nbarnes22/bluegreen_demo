@@ -3,16 +3,16 @@ kind: Service
 metadata:
   creationTimestamp: null
   labels:
-    app: mysite
+    app: blizzard-demo
     app.kubernetes.io/managed-by: Helm
-  name: mysite
+  name: blizzard-demo
 spec:
   ports:
   - port: 5000
     protocol: TCP
     targetPort: 5000
   selector:
-    app: myapp
+    app: datetime-json
   type: NodePort
 status:
   loadBalancer: {}

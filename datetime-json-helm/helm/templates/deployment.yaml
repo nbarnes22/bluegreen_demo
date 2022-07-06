@@ -3,19 +3,19 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    app: mysite
-  name: mysite
+    app: blizzard-demo
+  name: blizzard-demo
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: myapp
+      app: datetime-json
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: myapp
+        app: datetime-json
     spec:
       containers:
       - image: 152493160469.dkr.ecr.us-east-1.amazonaws.com/ecr-blizz-ue1:1.0.0
