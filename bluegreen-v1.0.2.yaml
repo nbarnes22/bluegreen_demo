@@ -1,0 +1,58 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  labels:
+    app: blizzard-demo
+  name: blizzard-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: blizzard-demo
+  template:
+    metadata:
+      labels:
+        app: blizzard-demo
+    spec:
+      containers:
+      - name: blizzard-demo
+        image: 152493160469.dkr.ecr.us-east-1.amazonaws.com/ecr-blizz-ue1:1.0.2
+        ports:
+        - containerPort: 5000
+  strategy:
+    blueGreen:
+      activeService: blizzard-demo-active
+      previewService: blizzard-demo-preview
+      autoPromotionEnabled: false
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: blizzard-demo
+  name: blizzard-demo-active
+spec:
+  ports:
+  - port: 5000
+    protocol: TCP
+    targetPort: 5000
+    nodePort: 32222
+  selector:
+    app: blizzard-demo
+  type: NodePort
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: blizzard-demo
+  name: blizzard-demo-preview
+spec:
+  ports:
+  - port: 5000
+    protocol: TCP
+    targetPort: 5000
+    nodePort: 32223
+  selector:
+    app: blizzard-demo
+  type: NodePort
