@@ -7,39 +7,21 @@ metadata:
     k8s-app: heartbeat
 data:
   heartbeat.yml: |-
-    #heartbeat.autodiscover:
-    #  # Autodiscover pods
-    #  providers:
-    #    - type: kubernetes
-    #      resource: pod
-    #      scope: cluster
-    #      node: ${NODE_NAME}
-    #      hints.enabled: true
-    #
-    #  # Autodiscover services
-    #  providers:
-    #    - type: kubernetes
-    #      resource: service
-    #      scope: cluster
-    #      node: ${NODE_NAME}
-    #      hints.enabled: true
-    #
-    #  # Autodiscover nodes
-    #  providers:
-    #    - type: kubernetes
-    #      resource: node
-    #      node: ${NODE_NAME}
-    #      scope: cluster
-    #      templates:
-    #        # Example, check SSH port of all cluster nodes:
-    #        - condition: ~
-    #          config:
-    #            - hosts:
-    #                - ${data.host}:22
-    #              name: ${data.kubernetes.node.name}
-    #              schedule: '@every 10s'
-    #              timeout: 5s
-    #              type: tcp
+    heartbeat.monitors:
+    #Monitor the Cluster IP on the Node Port
+    - type: http
+      id: blizzard-demo
+      enabled: true
+      schedule: '@every 1s'
+      urls: ["http://172.31.20.153:32222"]
+      ipv4: true
+      ipv6: true
+      mode: any
+      timeout: 1s
+      check.request:
+        method: "GET"
+      check.response:
+        status: 200
 
     processors:
       - add_cloud_metadata:

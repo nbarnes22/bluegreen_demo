@@ -1,0 +1,5 @@
+Internal test from bastion host:
+while :; do date; echo "TTLB:"; curl -s -w "%{time_total}\n" http://172.31.20.153:32222/ -o /dev/null -m 1 && echo "Success" || echo "Failure"; echo "------"; sleep 0.2; done | tee blizzard-demo-rollout-healthcheck.txt
+
+External test from local machine:
+while :; do date; echo "TTLB:"; curl -s -w "%{time_total}\n" http://54.159.81.198:32222/ -o /dev/null -m 1 && echo "Success" || echo "Failure"; echo "------"; sleep 0.2; done | tee blizzard-demo-rollout-healthcheck.txt
