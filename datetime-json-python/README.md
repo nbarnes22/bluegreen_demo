@@ -17,7 +17,7 @@ Sample JSON output:
 # How to Containerize the app and store the artifact in AWS ECR
 1. $ pip freeze > requirements.txt
 2. Create a dockerfile (see code for this app)
-3. $ docker build -t <repository name> .
-4. $ aws ecr get-login-password --region <aws region> | docker login --username AWS --password-stdin <ECR URL>
-5. $ docker tag <repository name>:latest <aws account number>.dkr.ecr.<aws region>.amazonaws.com/<repository name>:<version number>
-6. $ docker push <aws account number>.dkr.ecr.<aws region>.amazonaws.com/<repository name>:<version number>
+3. $ docker build -t < repository name > .
+4. $ aws ecr get-login-password --region < aws region > | docker login --username AWS --password-stdin < ECR URL >
+5. $ docker tag < repository name >:latest < aws account number >.dkr.ecr.< aws region >.amazonaws.com/< repository name >:< version number >
+6. $ docker push < aws account number >.dkr.ecr.< aws region >.amazonaws.com/< repository name >:< version number >

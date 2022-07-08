@@ -24,11 +24,11 @@ framework for observability and how to install
 2. You will need to enter the ELASTICSEARCH_HOST, ELASTICSEARCH_PASSWORD,
 and the ELASTIC_CLOUD_ID for the Elastic.co cloud deployment
 3. $ kubectl apply -f metricbeat-kubernetes-8.3.1.yaml
-4. Verify with "k get pods -n kube-system"
+4. Verify with "kubectl get pods -n kube-system"
 
 # Install Filebeat
 1. Modify filebeat-kubernetes-8.3.1.yaml for env section.
-2. $ Kubectl apply -f filebeat-kubernetes-8.3.1.yaml
+2. $ kubectl apply -f filebeat-kubernetes-8.3.1.yaml
 
 # Install Heartbeat
 1. Modify heartbeat-kubernetes-8.3.1.yaml for env section.
@@ -48,7 +48,7 @@ and the ELASTIC_CLOUD_ID for the Elastic.co cloud deployment
       method: "GET"
       check.response:
       status: 200
-3. $ Kubectl apply -f heartbeat-kubernetes-8.3.1.yaml
+3. $ kubectl apply -f heartbeat-kubernetes-8.3.1.yaml
 
 # Out of scope for this demo
 1. Use IaC such as Terraform and Github Actions to configure
