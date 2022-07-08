@@ -14,9 +14,9 @@ app = Flask(__name__)
 @app.route('/')
 def hello():
     # Render the page
-    # Print Hello World? in v1.0.1
-    # Print Hello World! in v1.0.2
-    return "Hello World!"
+    # Print Hello World from v1.0.1 in v1.0.1
+    # Print Hello World from v1.0.2 in v1.0.2
+    return "Hello World from v1.0.1"
 
 
 @app.route('/date')
@@ -24,7 +24,7 @@ def date():
     # Render the page
     # datetime object containing current date and time
     now = datetime.now()
-    # dd/mm/YY H:M:S
+    # Format and split: dd/mm/YY H:M:S
     dt_string1 = now.strftime("%d/%m/%Y")
     dt_string2 = now.strftime("%H:%M:%S:%f")
 
