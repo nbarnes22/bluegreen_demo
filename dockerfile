@@ -1,16 +1,6 @@
 # syntax=docker/dockerfile:1
-
 FROM python:3.8-slim-buster
-
-#WORKDIR /datetime_json
-
-#COPY requirements.txt requirements.txt
-#RUN pip3 install -r requirements.txt
-
-#COPY . .
-
-#CMD [ "python3", "-m" , "datetime_json", "run", "--host=0.0.0.0"]
-
+# Set app directory
 ENV APP_DIR=/app
 # Creating Application Source Code Directory
 RUN mkdir -p /$APP_DIR
@@ -25,6 +15,5 @@ COPY datetime_json.py /$APP_DIR
 EXPOSE 5000
 ENV FLASK_APP=datetime_json.py
 # Running Python Application
-# CMD ["python3", "datetime_json.py"]
 ENTRYPOINT [ "flask"]
 CMD ["run", "--host", "0.0.0.0"]
